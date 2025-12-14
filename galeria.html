@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✂️ Frizer Lendi - Galeria</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Definimi i Variablave të Ngjyrave dhe Fondeve */
+        :root {
+            --color-primary-dark: #121212;
+            --color-secondary-dark: #181818;
+            --color-accent: #e9967a; /* Ngjyra e unifikuar akcente */
+            --color-text-light: #f5f5f5;
+        }
+
+        /* -------------------------------------- */
+        /* STILE GLOBALE DHE ANIMACIONET */
+        /* -------------------------------------- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-primary-dark);
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden; 
+        }
+        
+        /* Animacioni i sfondit (Efekti i thellësisë/rrezatimit) */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 400px; 
+            background: radial-gradient(circle at 50% 100%, rgba(233, 150, 122, 0.08) 0%, transparent 70%);
+            z-index: -1;
+            animation: pulseBg 10s infinite alternate; 
+            pointer-events: none;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Klasat e shkurtra */
+        .text-accent { color: var(--color-accent); }
+        .bg-primary-dark { background-color: var(--color-primary-dark); }
+        .font-header { font-family: 'Oswald', sans-serif; }
+
+        /* ANIMACION PËR BUTONIN (GLOBAL) */
+        .btn-reserve {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .btn-reserve:hover {
+            background-color: #d17a60;
+            transform: scale(1.05); 
+            box-shadow: 0 8px 35px rgba(233, 150, 122, 0.8); 
+        }
+
+        /* BUTONI I ALBUMIT (Shtuar/Modifikuar) */
+        .btn-album {
+            background-color: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            font-size: 1.25rem; /* Për desktop (text-xl) */
+            padding: 1rem 3rem; /* Për desktop (py-4 px-12) */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .btn-album:hover {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+            transform: scale(1.05);
+            box-shadow: 0 8px 35px rgba(233, 150, 122, 0.8);
+        }
+
+        /* KËRKESA: BUTONI I ALBUMIT MË I VOGËL NË MOBILE */
+        @media (max-width: 768px) {
+            .btn-album {
+                font-size: 1rem; /* Më i vogël se desktop */
+                padding: 0.75rem 2rem; /* Më i vogël se desktop */
+            }
+        }
+        
+        /* STILIMI PËR GALERINË (FOTOT) */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            aspect-ratio: 4 / 5; 
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, box-shadow 0.4s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 15px 40px rgba(233, 150, 122, 0.8); 
+            z-index: 10;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1); 
+        }
+        
+        /* STILIMI I BUTONAVE TË FILTRAVE */
+        .filter-btn {
+            background-color: #2b2b2b;
+            color: #ccc;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid #444;
+        }
+        .filter-btn:hover {
+            background-color: #383838;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .filter-btn.active {
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 10px rgba(233, 150, 122, 0.4);
+        }
+
+        /* -------------------------------------- */
+        /* STILIMI PËR MODALIN E VLERËSIMIT DHE ALBUMIT TË RI */
+        /* -------------------------------------- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.95);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background-color: var(--color-secondary-dark);
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            animation: slideDown 0.4s;
+        }
+        
+        /* Modali i ri i Albumit të Fotove (Lightbox-like) */
+        #haircutAlbumModal {
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #haircutAlbumModal .modal-content {
+            margin: 5% auto;
+            max-width: 1200px;
+            width: 95%;
+            padding: 20px;
+            background: var(--color-primary-dark);
+            border: none;
+            box-shadow: 0 0 50px rgba(233, 150, 122, 0.2); 
+            /* KËRKESA: ANIMACION I RI */
+            animation: scaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        #album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding-top: 20px;
+        }
+        #album-grid .gallery-item {
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: none;
+        }
+        #album-grid .gallery-item:hover {
+            box-shadow: 0 0 20px rgba(233, 150, 122, 0.5); 
+            transform: scale(1.02);
+        }
+        
+        /* KËRKESA: IKONA X E RREGULLUAR */
+        .album-close-btn {
+            color: #ccc;
+            top: 25px;
+            right: 25px;
+            position: absolute;
+            font-size: 3rem; /* Më e madhe dhe e dukshme */
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+            cursor: pointer;
+            z-index: 1001;
+            line-height: 1; 
+        }
+        .album-close-btn:hover {
+            color: var(--color-accent);
+            transform: rotate(90deg) scale(1.1); /* Efekt animimi më i mirë */
+        }
+
+        /* KËRKESA: Animacionet e reja të modalit */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { 
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideDown { 
+            from { opacity: 0; transform: translateY(-50px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        /* Yjet e Vlerësimit (I Pandryshuar) */
+        .rating-stars { font-size: 2.5rem; direction: rtl; display: inline-block; margin-top: 20px; }
+        .rating-stars input { display: none; }
+        .rating-stars label { color: #555; cursor: pointer; padding: 0 5px; transition: color 0.3s, transform 0.3s; }
+        .rating-stars input:checked ~ label, .rating-stars label:hover, .rating-stars label:hover ~ label { color: gold; }
+        .rating-stars label:hover { transform: scale(1.2); }
+        
+    </style>
+</head>
+<body class="bg-primary-dark text-gray-200" style="opacity: 0;">
+
+    <div id="preloader">
+        <i id="loader-icon" class="fas fa-cut"></i>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-primary-dark bg-opacity-95 shadow-2xl border-b border-accent/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-3xl font-header font-extrabold text-accent tracking-widest uppercase hover:text-white transition duration-300">
+                    <span class="hidden sm:inline">LENDI BARBERSHOP</span>
+                    <span class="sm:hidden">LENDI</span>
+                </a>
+                
+                <nav class="hidden md:flex space-x-6 lg:space-x-8 font-light tracking-wider">
+                    <a href="index.html" class="nav-link text-gray-400 hover:text-accent transition duration-300 flex items-center space-x-1">
+                        <i class="fa-solid fa-store w-5 h-5"></i>
+                        <span>Kryefaqja</span>
+                    </a>
+                    <a href="sherbimet.html" class="nav-link text-gray-400 hover:text-accent transition duration-300 flex items-center space-x-1">
+                        <i class="fa-solid fa-scissors w-5 h-5"></i>
+                        <span>Shërbimet</span>
+                    </a>
+                    <a href="rreth_nesh.html" class="nav-link text-gray-400 hover:text-accent transition duration-300 flex items-center space-x-1">
+                        <i class="fa-solid fa-user-tie w-5 h-5"></i>
+                        <span>Rreth Nesh</span>
+                    </a>
+                    <a href="galeria.html" class="nav-link text-accent transition duration-300 flex items-center space-x-1 active-link">
+                        <i class="fa-solid fa-camera w-5 h-5"></i>
+                        <span>Galeria</span>
+                    </a>
+                </nav>
+                
+                <a href="kontakt.html" class="hidden md:block btn-reserve text-lg font-bold py-2 px-6 rounded-full uppercase shadow-md hover:shadow-xl transition duration-300">
+                    REZERVIM
+                </a>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                    <svg id="hamburger-icon" class="h-8 w-8 transition duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    <svg id="close-icon" class="h-8 w-8 text-white hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-primary-dark border-t border-gray-800 absolute w-full shadow-2xl">
+            <nav class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-100 hover:bg-[#333]">
+                    <i class="fa-solid fa-store"></i> Kryefaqja
+                </a>
+                <a href="sherbimet.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-100 hover:bg-[#333]">
+                    <i class="fa-solid fa-scissors"></i> Shërbimet
+                </a>
+                <a href="rreth_nesh.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-100 hover:bg-[#333]">
+                    <i class="fa-solid fa-user-tie"></i> Rreth Nesh
+                </a>
+                <a href="galeria.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-100 active-link-mobile">
+                    <i class="fa-solid fa-camera"></i> Galeria
+                </a>
+                <a href="kontakt.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-100 hover:bg-[#333]">
+                    <i class="fa-solid fa-phone-volume"></i> Kontakt
+                </a>
+                <a href="kontakt.html" class="block w-full text-center btn-reserve text-lg font-bold py-3 mt-4 rounded-md">Rezervo Tani</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-5xl font-header font-extrabold text-accent text-center mb-6 uppercase tracking-wide">SHIKONI PUNËN TONË</h2>
+            <p class="text-gray-400 text-center mb-10">Përdorni filtrat për të parë stile specifike.</p>
+            
+            <div class="flex flex-wrap justify-center space-x-3 gap-y-3 mb-12">
+                <button class="filter-btn active" data-filter="all" onclick="filterGallery('all', this)">Të Gjitha</button>
+                <button class="filter-btn" data-filter="fade" onclick="filterGallery('fade', this)">Fade & Moderne</button>
+                <button class="filter-btn" data-filter="classic" onclick="filterGallery('classic', this)">Klasike & Pompadour</button>
+                <button class="filter-btn" data-filter="beard" onclick="filterGallery('beard', this)">Rroje & Mjekra</button>
+                <button class="filter-btn" data-filter="interior" onclick="filterGallery('interior', this)">Interieri</button>
+            </div>
+
+            <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item interior"><img src="d4f07b7a-7ea3-494b-913b-ffc6207cadb5.jpeg" alt="Interieri Modern i Barbershopit"/></div>
+                <div class="gallery-item fade"><img src="4622b642-d11b-4cfb-a18a-4fb7a3a6fdf7.jpeg" alt="Prerje e pastër Fade"/></div>
+                <div class="gallery-item beard"><img src="13dcf494-980c-4b8c-a162-2998d256e040.jpeg" alt="Mjekër e Formësuar"/></div>
+                <div class="gallery-item classic"><img src="df808741-be49-48ee-92fd-162c4262a94d.jpeg" alt="Stil Klasik me ndarje anësore"/></div>
+                <div class="gallery-item fade"><img src="d8e67408-192b-4656-b17e-2861ccb17372.jpeg" alt="Prerje e re me teksturë"/></div>
+                <div class="gallery-item beard"><img src="e02dbdaf-3c53-42dd-a4d9-438559bd382f.jpeg" alt="Rruajtje e pastër me brisk"/></div>
+                <div class="gallery-item classic"><img src="dcfda62a-8f97-4db7-bef6-8029f8bcfab5.jpeg" alt="Pompadour e lartë"/></div>
+                <div class="gallery-item interior"><img src="bc44e05f-8269-4a64-a2b6-cf047fcfe310.jpeg" alt="Stacioni i punës"/></div>
+                <div class="gallery-item fade"><img src="54d2a8b5-f17f-46b2-ac14-d31ca0fb56d7.jpeg" alt="Foto Re e Stilit Fade"/></div>
+                <div class="gallery-item beard"><img src="efe4182b-a857-44ec-8d3f-967557e96d12.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
+                <div class="gallery-item classic"><img src="efa3aead-22bd-43d6-b05d-3062f711e0f5.jpeg" alt="Foto Re e Stilit Klasik"/></div>
+                <div class="gallery-item fade"><img src="c7a7dbd9-1dfb-45c6-abcd-245abb0343a2.jpeg" alt="Foto Re e Stilit Modern"/></div>
+                <div class="gallery-item classic"><img src="3a8ad619-4ce8-4759-90b4-7dd770ed6a03.jpeg" alt="Foto Re e Stilit Pompadour"/></div>
+                <div class="gallery-item interior"><img src="Screenshot 2025-12-14 163733.png" alt="Foto Re e Interierit"/></div>
+                <div class="gallery-item fade"><img src="579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
+                <div class="gallery-item beard"><img src="Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-16">
+                <button id="openHaircutAlbum" class="btn-album inline-block font-extrabold rounded-lg uppercase shadow-xl w-full md:w-auto transition duration-300">
+                    <i class="fa-solid fa-image mr-2"></i> ALBUM FOTOSH QETHJESH
+                </button>
+            
+                <button id="openRatingModal" class="btn-reserve inline-block text-xl font-extrabold py-4 px-12 rounded-lg uppercase shadow-xl w-full md:w-auto transition duration-300">
+                    <i class="fa-solid fa-star mr-2"></i> VLERËSO AMBIENTET
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-primary-dark text-white py-10 border-t border-accent/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-3xl font-header font-extrabold mb-3 text-accent uppercase">LENDI BARBERSHOP</h3>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://www.instagram.com/frizerlendii/" target="_blank" class="text-gray-400 hover:text-accent transition duration-300 transform hover:scale-110">
+                    <i class="fab fa-instagram fa-2x"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61583782247214" target="_blank" class="text-gray-400 hover:text-accent transition duration-300 transform hover:scale-110">
+                    <i class="fab fa-facebook-f fa-2x"></i>
+                </a>
+                <a href="tel:049338215" class="text-gray-400 hover:text-accent transition duration-300 transform hover:scale-110">
+                    <i class="fa-solid fa-phone fa-2x"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 text-sm mb-1">📍 Ratkoc, Rahovec | 📧 blendonhoti5@gmail.com</p>
+            <p class="text-sm text-gray-600 mt-4">© 2025 Frizer Lendi. Ekskluzivisht për Zotërinj.</p>
+        </div>
+    </footer>
+    
+    <div id="ratingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modalTitle" class="text-3xl font-header font-bold text-accent mb-4 uppercase">Vlerësoni Ambientet</h3>
+            <p id="modalText" class="text-gray-300 mb-6">Si ndiheni në ambientet e Lendi Barbershop?</p>
+            
+            <div class="rating-stars" id="starsContainer">
+                <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Shkëlqyer - 5 yje"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Shumë Mirë - 4 yje"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Mesatarisht - 3 yje"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Dobët - 2 yje"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Shumë Dobët - 1 yll"><i class="fa-solid fa-star"></i></label>
+            </div>
+            
+            <button id="submitRating" class="btn-reserve text-lg font-bold py-3 px-8 rounded-md mt-6 w-full opacity-50 cursor-not-allowed" disabled>
+                Dërgo Vlerësimin
+            </button>
+        </div>
+    </div>
+    
+    <div id="haircutAlbumModal" class="modal">
+        <div class="modal-content">
+            <span id="albumCloseBtn" class="album-close-btn absolute cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <h3 class="text-4xl font-header font-extrabold text-accent text-center mb-6 uppercase tracking-wide">
+                ALBUMI VETËM QETHJEVE & MJEKRAVE
+            </h3>
+            
+            <div id="album-grid">
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170658.png" alt="Prerje e pastër Fade"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170354.png" alt="Mjekër e Formësuar"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170429.png" alt="Stil Klasik me ndarje anësore"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170454.png" alt="Prerje e re me teksturë"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170816.png" alt="Rruajtje e pastër me brisk"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 170729.png" alt="Pompadour e lartë"/></div>
+                <div class="gallery-item"><img src="7ea52692-de22-48fe-8224-ed64d0d174ec.jpeg" alt="Foto Re e Stilit Fade"/></div>
+                <div class="gallery-item"><img src="dc523084-f60b-456d-bfc5-443e04af6354.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 171750.png" alt="Foto Re e Stilit Klasik"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 171635.png" alt="Foto Re e Stilit Modern"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 171730.png" alt="Foto Re e Stilit Pompadour"/></div>
+                <div class="gallery-item"><img src="579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
+                <div class="gallery-item"><img src="Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Funksioni i Filtrimit (I PANDRYSHUAR)
+        function filterGallery(filter, clickedButton = null) {
+            const items = document.querySelectorAll('#gallery-container .gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (clickedButton) { clickedButton.classList.add('active'); } 
+            
+            items.forEach(item => {
+                if (filter === 'all' || item.classList.contains(filter)) {
+                    item.classList.remove('hide-transition', 'hidden');
+                    requestAnimationFrame(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    });
+                } else {
+                    item.classList.add('hide-transition');
+                    item.addEventListener('transitionend', function handler() {
+                        if (item.classList.contains('hide-transition')) {
+                            item.classList.add('hidden');
+                        }
+                        item.removeEventListener('transitionend', handler);
+                    });
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializimi
+            filterGallery('all');
+            
+            // Logjika e Preloaderit & Menu Mobile (I PANDRYSHUAR)
+            const preloader = document.getElementById('preloader');
+            const body = document.body;
+            window.addEventListener('load', () => { preloader.style.opacity = '0'; setTimeout(() => { preloader.style.display = 'none'; body.style.opacity = '1'; }, 500); });
+            
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const hamburger = document.getElementById('hamburger-icon');
+            const close = document.getElementById('close-icon');
+            button.addEventListener('click', () => {
+                const isHidden = menu.classList.toggle('hidden');
+                if (!isHidden) {
+                    menu.style.top = document.querySelector('header').offsetHeight + 'px';
+                    hamburger.classList.add('hidden');
+                    close.classList.remove('hidden');
+                } else {
+                    hamburger.classList.remove('hidden');
+                    close.classList.add('hidden');
+                }
+            });
+
+            // ----------------------------------------------------
+            // LOGJIKA PËR MODALIN E VLERËSIMIT (I PANDRYSHUAR)
+            // ----------------------------------------------------
+            const ratingModal = document.getElementById("ratingModal");
+            const openRatingBtn = document.getElementById("openRatingModal");
+            const closeRatingBtn = document.getElementsByClassName("close-btn")[0];
+            const submitBtn = document.getElementById("submitRating");
+            const ratingInputs = document.querySelectorAll('.rating-stars input[type="radio"]');
+            const modalTitle = document.getElementById("modalTitle");
+            const modalText = document.getElementById("modalText");
+            const starsContainer = document.getElementById("starsContainer");
+            
+            openRatingBtn.onclick = function() {
+                modalTitle.textContent = "Vlerësoni Ambientet";
+                modalText.textContent = "Si ndiheni në ambientet e Lendi Barbershop?";
+                starsContainer.style.display = 'inline-block';
+                submitBtn.style.display = 'block';
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('opacity-100', 'cursor-pointer');
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                ratingInputs.forEach(input => input.checked = false); 
+                ratingModal.style.display = "block";
+            }
+            
+            closeRatingBtn.onclick = function() { ratingModal.style.display = "none"; }
+            
+            ratingInputs.forEach(input => {
+                input.addEventListener('change', () => {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    submitBtn.classList.add('opacity-100', 'cursor-pointer');
+                });
+            });
+
+            submitBtn.onclick = function() {
+                starsContainer.style.display = 'none';
+                submitBtn.style.display = 'none';
+                modalTitle.textContent = "Faleminderit shumë!";
+                modalText.textContent = "Vlerësimi juaj është marrë dhe na ndihmon të përmirësohemi.";
+                setTimeout(() => { ratingModal.style.display = "none"; }, 3000);
+            }
+            
+            // ----------------------------------------------------
+            // LOGJIKA PËR MODALIN E RI TË ALBUMIT TË FOTOSHVE (E MODIFIKUAR)
+            // ----------------------------------------------------
+            const haircutAlbumModal = document.getElementById("haircutAlbumModal");
+            const openAlbumBtn = document.getElementById("openHaircutAlbum");
+            const closeAlbumBtn = document.getElementById("albumCloseBtn");
+
+            // KËRKESA: Animacion i kundërt për mbylljen e albumit me JS 
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes scaleOut {
+                    from { opacity: 1; transform: scale(1); }
+                    to { opacity: 0; transform: scale(0.95); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Hap Modalin e Albumit
+            openAlbumBtn.onclick = function() {
+                haircutAlbumModal.style.display = "block";
+                document.body.style.overflow = 'hidden'; 
+            }
+            
+            // Mbyll Modalin e Albumit me X (Me Animacion Mbyllës)
+            closeAlbumBtn.onclick = function() {
+                // Aktivizon animacionin e mbylljes scaleOut
+                haircutAlbumModal.querySelector('.modal-content').style.animation = 'scaleOut 0.3s forwards';
+                
+                setTimeout(() => {
+                    haircutAlbumModal.style.display = "none";
+                    document.body.style.overflow = 'auto'; 
+                    // Reset animation për hapjen tjetër (përdor scaleIn)
+                    haircutAlbumModal.querySelector('.modal-content').style.animation = 'scaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+                }, 300);
+            }
+            
+            // Mbyll Modalin kur klikohet jashtë
+            window.onclick = function(event) {
+                if (event.target == ratingModal) { 
+                    ratingModal.style.display = "none";
+                }
+                if (event.target == haircutAlbumModal) {
+                    closeAlbumBtn.onclick(); // Thërret funksionin e ri të mbylljes me animacion
+                }
+            }
+        });
+    </script>
+</body>
+</html>
