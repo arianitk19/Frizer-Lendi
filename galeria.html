@@ -15,7 +15,7 @@
         :root {
             --color-primary-dark: #121212;
             --color-secondary-dark: #181818;
-            --color-accent: #e9967a; /* Ngjyra e unifikuar akcente */
+            --color-accent: #e9967a; 
             --color-text-light: #f5f5f5;
         }
 
@@ -71,8 +71,8 @@
             background-color: transparent;
             color: var(--color-accent);
             border: 2px solid var(--color-accent);
-            font-size: 1.25rem; /* Për desktop (text-xl) */
-            padding: 1rem 3rem; /* Për desktop (py-4 px-12) */
+            font-size: 1.25rem; 
+            padding: 1rem 3rem; 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .btn-album:hover {
@@ -85,8 +85,8 @@
         /* KËRKESA: BUTONI I ALBUMIT MË I VOGËL NË MOBILE */
         @media (max-width: 768px) {
             .btn-album {
-                font-size: 1rem; /* Më i vogël se desktop */
-                padding: 0.75rem 2rem; /* Më i vogël se desktop */
+                font-size: 1rem; 
+                padding: 0.75rem 2rem; 
             }
         }
         
@@ -180,7 +180,6 @@
             background: var(--color-primary-dark);
             border: none;
             box-shadow: 0 0 50px rgba(233, 150, 122, 0.2); 
-            /* KËRKESA: ANIMACION I RI */
             animation: scaleIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
@@ -200,13 +199,13 @@
             transform: scale(1.02);
         }
         
-        /* KËRKESA: IKONA X E RREGULLUAR */
+        /* IKONA X E RREGULLUAR */
         .album-close-btn {
             color: #ccc;
             top: 25px;
             right: 25px;
             position: absolute;
-            font-size: 3rem; /* Më e madhe dhe e dukshme */
+            font-size: 3rem; 
             font-weight: bold;
             transition: color 0.3s, transform 0.3s;
             cursor: pointer;
@@ -215,10 +214,10 @@
         }
         .album-close-btn:hover {
             color: var(--color-accent);
-            transform: rotate(90deg) scale(1.1); /* Efekt animimi më i mirë */
+            transform: rotate(90deg) scale(1.1); 
         }
 
-        /* KËRKESA: Animacionet e reja të modalit */
+        /* Animacionet e modalit */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes scaleIn { 
             from { opacity: 0; transform: scale(0.95); }
@@ -229,7 +228,7 @@
             to { opacity: 1; transform: translateY(0); } 
         }
         
-        /* Yjet e Vlerësimit (I Pandryshuar) */
+        /* Yjet e Vlerësimit */
         .rating-stars { font-size: 2.5rem; direction: rtl; display: inline-block; margin-top: 20px; }
         .rating-stars input { display: none; }
         .rating-stars label { color: #555; cursor: pointer; padding: 0 5px; transition: color 0.3s, transform 0.3s; }
@@ -248,7 +247,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="text-3xl font-header font-extrabold text-accent tracking-widest uppercase hover:text-white transition duration-300">
-                    <span class="hidden sm:inline">LENDI BARBERSHOP</span>
+                    <span class="hidden sm:inline">FRIZER LENDI</span>
                     <span class="sm:hidden">LENDI</span>
                 </a>
                 
@@ -318,22 +317,22 @@
             </div>
 
             <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <div class="gallery-item interior"><img src="d4f07b7a-7ea3-494b-913b-ffc6207cadb5.jpeg" alt="Interieri Modern i Barbershopit"/></div>
-                <div class="gallery-item fade"><img src="4622b642-d11b-4cfb-a18a-4fb7a3a6fdf7.jpeg" alt="Prerje e pastër Fade"/></div>
-                <div class="gallery-item beard"><img src="13dcf494-980c-4b8c-a162-2998d256e040.jpeg" alt="Mjekër e Formësuar"/></div>
-                <div class="gallery-item classic"><img src="df808741-be49-48ee-92fd-162c4262a94d.jpeg" alt="Stil Klasik me ndarje anësore"/></div>
-                <div class="gallery-item fade"><img src="d8e67408-192b-4656-b17e-2861ccb17372.jpeg" alt="Prerje e re me teksturë"/></div>
-                <div class="gallery-item beard"><img src="e02dbdaf-3c53-42dd-a4d9-438559bd382f.jpeg" alt="Rruajtje e pastër me brisk"/></div>
-                <div class="gallery-item classic"><img src="dcfda62a-8f97-4db7-bef6-8029f8bcfab5.jpeg" alt="Pompadour e lartë"/></div>
-                <div class="gallery-item interior"><img src="bc44e05f-8269-4a64-a2b6-cf047fcfe310.jpeg" alt="Stacioni i punës"/></div>
-                <div class="gallery-item fade"><img src="54d2a8b5-f17f-46b2-ac14-d31ca0fb56d7.jpeg" alt="Foto Re e Stilit Fade"/></div>
-                <div class="gallery-item beard"><img src="efe4182b-a857-44ec-8d3f-967557e96d12.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
-                <div class="gallery-item classic"><img src="efa3aead-22bd-43d6-b05d-3062f711e0f5.jpeg" alt="Foto Re e Stilit Klasik"/></div>
-                <div class="gallery-item fade"><img src="c7a7dbd9-1dfb-45c6-abcd-245abb0343a2.jpeg" alt="Foto Re e Stilit Modern"/></div>
-                <div class="gallery-item classic"><img src="3a8ad619-4ce8-4759-90b4-7dd770ed6a03.jpeg" alt="Foto Re e Stilit Pompadour"/></div>
-                <div class="gallery-item interior"><img src="Screenshot 2025-12-14 163733.png" alt="Foto Re e Interierit"/></div>
-                <div class="gallery-item fade"><img src="579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
-                <div class="gallery-item beard"><img src="Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
+                <div class="gallery-item interior"><img src="/images/d4f07b7a-7ea3-494b-913b-ffc6207cadb5.jpeg" alt="Interieri Modern i Barbershopit"/></div>
+                <div class="gallery-item fade"><img src="/images/4622b642-d11b-4cfb-a18a-4fb7a3a6fdf7.jpeg" alt="Prerje e pastër Fade"/></div>
+                <div class="gallery-item beard"><img src="/images/13dcf494-980c-4b8c-a162-2998d256e040.jpeg" alt="Mjekër e Formësuar"/></div>
+                <div class="gallery-item classic"><img src="/images/df808741-be49-48ee-92fd-162c4262a94d.jpeg" alt="Stil Klasik me ndarje anësore"/></div>
+                <div class="gallery-item fade"><img src="/images/d8e67408-192b-4656-b17e-2861ccb17372.jpeg" alt="Prerje e re me teksturë"/></div>
+                <div class="gallery-item beard"><img src="/images/e02dbdaf-3c53-42dd-a4d9-438559bd382f.jpeg" alt="Rruajtje e pastër me brisk"/></div>
+                <div class="gallery-item classic"><img src="/images/dcfda62a-8f97-4db7-bef6-8029f8bcfab5.jpeg" alt="Pompadour e lartë"/></div>
+                <div class="gallery-item interior"><img src="/images/bc44e05f-8269-4a64-a2b6-cf047fcfe310.jpeg" alt="Stacioni i punës"/></div>
+                <div class="gallery-item fade"><img src="/images/54d2a8b5-f17f-46b2-ac14-d31ca0fb56d7.jpeg" alt="Foto Re e Stilit Fade"/></div>
+                <div class="gallery-item beard"><img src="/images/efe4182b-a857-44ec-8d3f-967557e96d12.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
+                <div class="gallery-item classic"><img src="/images/efa3aead-22bd-43d6-b05d-3062f711e0f5.jpeg" alt="Foto Re e Stilit Klasik"/></div>
+                <div class="gallery-item fade"><img src="/images/c7a7dbd9-1dfb-45c6-abcd-245abb0343a2.jpeg" alt="Foto Re e Stilit Modern"/></div>
+                <div class="gallery-item classic"><img src="/images/3a8ad619-4ce8-4759-90b4-7dd770ed6a03.jpeg" alt="Foto Re e Stilit Pompadour"/></div>
+                <div class="gallery-item interior"><img src="/images/Screenshot 2025-12-14 163733.png" alt="Foto Re e Interierit"/></div>
+                <div class="gallery-item fade"><img src="/images/579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
+                <div class="gallery-item beard"><img src="/images/Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
             </div>
 
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 mt-16">
@@ -399,20 +398,19 @@
             </h3>
             
             <div id="album-grid">
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170658.png" alt="Prerje e pastër Fade"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170354.png" alt="Mjekër e Formësuar"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170429.png" alt="Stil Klasik me ndarje anësore"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170454.png" alt="Prerje e re me teksturë"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170816.png" alt="Rruajtje e pastër me brisk"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 170729.png" alt="Pompadour e lartë"/></div>
-                <div class="gallery-item"><img src="7ea52692-de22-48fe-8224-ed64d0d174ec.jpeg" alt="Foto Re e Stilit Fade"/></div>
-                <div class="gallery-item"><img src="dc523084-f60b-456d-bfc5-443e04af6354.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 171750.png" alt="Foto Re e Stilit Klasik"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 171635.png" alt="Foto Re e Stilit Modern"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 171730.png" alt="Foto Re e Stilit Pompadour"/></div>
-                <div class="gallery-item"><img src="579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
-                <div class="gallery-item"><img src="Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
-                
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170658.png" alt="Prerje e pastër Fade"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170354.png" alt="Mjekër e Formësuar"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170429.png" alt="Stil Klasik me ndarje anësore"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170454.png" alt="Prerje e re me teksturë"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170816.png" alt="Rruajtje e pastër me brisk"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 170729.png" alt="Pompadour e lartë"/></div>
+                <div class="gallery-item"><img src="/images/7ea52692-de22-48fe-8224-ed64d0d174ec.jpeg" alt="Foto Re e Stilit Fade"/></div>
+                <div class="gallery-item"><img src="/images/dc523084-f60b-456d-bfc5-443e04af6354.jpeg" alt="Foto Re e Stilit Mjekër"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 171750.png" alt="Foto Re e Stilit Klasik"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 171635.png" alt="Foto Re e Stilit Modern"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 171730.png" alt="Foto Re e Stilit Pompadour"/></div>
+                <div class="gallery-item"><img src="/images/579943934_18379286077196153_6394297474437142203_n.jpg" alt="Foto Re e Stilit Të Shkurtër"/></div>
+                <div class="gallery-item"><img src="/images/Screenshot 2025-12-14 164101.png" alt="Foto Re e Stilit Rroje"/></div>
             </div>
         </div>
     </div>
@@ -520,7 +518,7 @@
             const openAlbumBtn = document.getElementById("openHaircutAlbum");
             const closeAlbumBtn = document.getElementById("albumCloseBtn");
 
-            // KËRKESA: Animacion i kundërt për mbylljen e albumit me JS 
+            // Animacion i kundërt për mbylljen e albumit me JS 
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes scaleOut {
@@ -536,7 +534,7 @@
                 document.body.style.overflow = 'hidden'; 
             }
             
-            // Mbyll Modalin e Albumit me X (Me Animacion Mbyllës)
+            // Mbyll Modalin me X (Me Animacion Mbyllës)
             closeAlbumBtn.onclick = function() {
                 // Aktivizon animacionin e mbylljes scaleOut
                 haircutAlbumModal.querySelector('.modal-content').style.animation = 'scaleOut 0.3s forwards';

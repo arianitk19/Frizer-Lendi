@@ -13,14 +13,15 @@
         .text-accent { color: #e9967a; } /* Ngjyra theksuese e butë */
         .bg-primary-dark { background-color: #121212; }
         
-        /* SFONDI KRYESOR */
-        .hero-bg {
-            background-image: url('6aa3936c-471c-4975-b99d-8203f05eda32.jpeg'); 
-            background-size: cover;
-            background-position: center 30%; 
-            min-height: 90vh;
-            position: relative; 
-        }
+        /* SFONDI KRYESOR I RREGULLUAR */
+.hero-bg {
+    /* U SHTUA: images/ */
+    background-image: url('images/6aa3936c-471c-4975-b99d-8203f05eda32.jpeg'); 
+    background-size: cover;
+    background-position: center 30%; 
+    min-height: 90vh;
+    position: relative; 
+}
         
         /* SHADOW E BUTË PËR HERO SECTION */
         .hero-bg::before {
@@ -374,61 +375,68 @@
             </div>
         </section>
         
-        <section class="py-16 merch-section">
-            <div class="merch-gradient-bg"></div> 
-            <div class="max-w-7xl mx-auto px-4 text-center merch-content-wrapper">
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 uppercase">
-                    KOLEKSIONI LENDI
-                </h2>
-                <p class="text-xl text-accent mb-12 font-light">
-                   Eleganca dhe cilësia e koleksionit me aksesorët dhe veshjet tona ekskluzive.
-                </p>
+       <section class="py-16 merch-section">
+    <div class="merch-gradient-bg"></div> 
+    <div class="max-w-7xl mx-auto px-4 text-center merch-content-wrapper">
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 uppercase">
+            KOLEKSIONI LENDI
+        </h2>
+        <p class="text-xl text-accent mb-12 font-light">
+            Eleganca dhe cilësia e koleksionit me aksesorët dhe veshjet tona ekskluzive.
+        </p>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
-                    
-                    <div class="merch-card p-2">
-                        <img src="unnamed (1).jpg" alt="Duksi Lenti Barbershop" class="w-full h-40 object-cover rounded-lg mb-2">
-                        <h3 class="text-lg font-bold text-white mt-2">Duksi Ekskluziv</h3>
-                        <p class="text-gray-400 text-sm">Veshje cilësore me logo.</p>
-                        <span class="inline-block text-xs font-semibold text-accent mt-2">VESHJE</span>
-                    </div>
-
-                    <div class="merch-card p-2">
-                        <img src="unnamed.jpg" alt="Maica Lenti Barbershop" class="w-full h-40 object-cover rounded-lg mb-2">
-                        <h3 class="text-lg font-bold text-white mt-2">Maica Minimaliste</h3>
-                        <p class="text-gray-400 text-sm">Stil i freskët dhe material i butë për çdo ditë.</p>
-                        <span class="inline-block text-xs font-semibold text-accent mt-2">VESHJE</span>
-                    </div>
-                    
-                    <div class="merch-card p-2">
-                        <img src="unnamed (2).jpg" alt="Kartë Vizite Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
-                        <h3 class="text-lg font-bold text-white mt-2">Kartë Vizite Premium</h3>
-                        <p class="text-gray-400 text-sm">Dizajn elegant: Përshtypja e parë llogaritet.</p>
-                        <span class="inline-block text-xs font-semibold text-accent mt-2">BRANDING</span>
-                    </div>
-                    
-                    <div class="merch-card p-2">
-                        <img src="unnamed (5).jpg" alt="Kapuq Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
-                        <h3 class="text-lg font-bold text-white mt-2">Kapuçi Markë</h3>
-                        <p class="text-gray-400 text-sm">Detaji i vogël, cilësia e madhe. falas per klientët tanë</p>
-                        <span class="inline-block text-xs font-semibold text-accent mt-2">AKSESORË</span>
-                    </div>
-                    
-                    <div class="merch-card p-2">
-                        <img src="unnamed (4).jpg" alt="Shkrebza Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
-                        <h3 class="text-lg font-bold text-white mt-2">Shkrebza e Markës</h3>
-                        <p class="text-gray-400 text-sm">Aksesor unik me estetikën e Lenti Barbershop.</p>
-                        <span class="inline-block text-xs font-semibold text-accent mt-2">AKSESORË</span>
-                    </div>
-                </div>
-
-                <div class="mt-12">
-                    <button id="show-merch-info" class="btn-reserve inline-block text-lg font-extrabold py-3 px-10 rounded-full uppercase shadow-xl">
-                        KOLEKSIONI LENDI
-                    </button>
-                </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+            
+            <div class="merch-card p-2">
+                <img src="images/unnamed (1).jpg" alt="Duksi Lenti Barbershop" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Duksi Ekskluziv</h3>
+                <p class="text-gray-400 text-sm">Veshje cilësore me logo.</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">VESHJE</span>
             </div>
-        </section>
+
+            <div class="merch-card p-2">
+                <img src="images/unnamed.jpg" alt="Maica Lenti Barbershop" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Maica Minimaliste</h3>
+                <p class="text-gray-400 text-sm">Stil i freskët dhe material i butë për çdo ditë.</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">VESHJE</span>
+            </div>
+
+            <div class="merch-card p-2">
+                <img src="images/unnamed 22.jpg" alt="Tranerke Premium Lendi Barbershop" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Tranerke LENDI</h3>
+                <p class="text-gray-400 text-sm">Për stil dhe komfort jashtë orarit të punës.</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">VESHJE</span>
+            </div>
+            
+            <div class="merch-card p-2">
+                <img src="images/unnamed (2).jpg" alt="Kartë Vizite Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Kartë Vizite Premium</h3>
+                <p class="text-gray-400 text-sm">Dizajn elegant: Përshtypja e parë llogaritet.</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">BRANDING</span>
+            </div>
+            
+            <div class="merch-card p-2">
+                <img src="images/unnamed (5).jpg" alt="Kapuq Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Kapuçi Markë</h3>
+                <p class="text-gray-400 text-sm">Detaji i vogël, cilësia e madhe. falas per klientët tanë</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">AKSESORË</span>
+            </div>
+            
+            <div class="merch-card p-2">
+                <img src="images/unnamed (4).jpg" alt="Shkrebza Lenti" class="w-full h-40 object-cover rounded-lg mb-2">
+                <h3 class="text-lg font-bold text-white mt-2">Shkrebza e Markës</h3>
+                <p class="text-gray-400 text-sm">Aksesor unik me estetikën e Lenti Barbershop.</p>
+                <span class="inline-block text-xs font-semibold text-accent mt-2">AKSESORË</span>
+            </div>
+        </div>
+        
+        <div class="mt-12">
+            <button id="show-merch-info" class="btn-reserve inline-block text-lg font-extrabold py-3 px-10 rounded-full uppercase shadow-xl">
+                KOLEKSIONI LENDI
+            </button>
+        </div>
+    </div>
+</section>
         
         <section class="py-12 contact-highlight-bg">
             <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center relative z-10">

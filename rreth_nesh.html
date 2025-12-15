@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>👑 Stafi & Mjeshtëria - Frizer Lendi</title>
+    <title>👑 Stafi - Frizer Lendi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -12,23 +12,24 @@
     <style>
         /* Ngjyrat dhe Bazat */
         body { font-family: 'Arial', sans-serif; background-color: #1a1a1a; }
-        .text-accent { color: #e9967a; } 
+        .text-accent { color: #e9967a; }
         .bg-primary-dark { background-color: #121212; }
 
         /* Stili i ri Parallax */
+        /* KY IMASH NUK KA NEVOJË PËR images/ SEPSE ËSHTË ONLINE */
         .parallax-bg {
             background-image: url('https://images.unsplash.com/photo-154784787-83281222625c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNzAwNjJ8MHwxfHNlYXJjaHwyMHx8YmFyYmVyc2hvcCUyMGFtYmiejt8ZW58MHx8fHwxNzAzNzY3NzQyfDA&lib=rb-4.0.3&q=80&w=1080');
             background-attachment: fixed;
             background-position: center top;
             background-size: cover;
-            position: relative; 
-            padding-top: 100px; 
+            position: relative;
+            padding-top: 100px;
         }
         .parallax-bg::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(18, 18, 18, 0.95); 
+            background: rgba(18, 18, 18, 0.95);
             z-index: 1;
         }
         .main-content-wrapper {
@@ -37,22 +38,22 @@
         }
 
         /* ANIMACION PËR BUTONAT */
-        .btn-reserve { 
-            background-color: #e9967a; 
+        .btn-reserve {
+            background-color: #e9967a;
             color: #121212;
             transition: all 0.4s ease;
             box-shadow: 0 0 0 0 rgba(233, 150, 122, 0.5);
         }
-        .btn-reserve:hover { 
-            background-color: #d17a60; 
+        .btn-reserve:hover {
+            background-color: #d17a60;
             transform: scale(1.05);
-            box-shadow: 0 0 25px 5px rgba(233, 150, 122, 0.8); 
+            box-shadow: 0 0 25px 5px rgba(233, 150, 122, 0.8);
         }
 
         /* RREGULLIM PËR BUTONIN TEK MENUJA MOBILE */
         .mobile-btn-reserve {
             background-color: #e9967a;
-            color: #121212 !important; 
+            color: #121212 !important;
             font-weight: bold;
             display: block;
             text-align: center;
@@ -67,11 +68,11 @@
         .team-card-unified {
             background: linear-gradient(145deg, #1e1e1e, #121212);
             border-radius: 16px;
-            padding: 40px 30px; 
+            padding: 40px 30px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
             border: 2px solid #333;
             transition: transform 0.5s ease, border-color 0.5s ease;
-            max-width: 450px; 
+            max-width: 450px;
             margin: 0 auto;
         }
         .team-card-unified:hover {
@@ -79,21 +80,21 @@
             border-color: #e9967a;
         }
         .team-img-lg {
-            width: 170px; 
+            width: 170px;
             height: 170px;
             object-fit: cover;
             border-radius: 50%;
             border: 5px solid #e9967a;
             margin: 0 auto 20px;
-            display: block; 
-            object-position: center top; 
+            display: block;
+            object-position: center top;
         }
         .sub-staff-summary {
-             background-color: #2a2a2a;
-             border-radius: 8px;
-             padding: 15px;
-             margin-top: 25px;
-             border: 1px dashed #e9967a70;
+              background-color: #2a2a2a;
+              border-radius: 8px;
+              padding: 15px;
+              margin-top: 25px;
+              border: 1px dashed #e9967a70;
         }
         
         .value-card {
@@ -106,7 +107,7 @@
         }
         .value-card:hover {
             background-color: #242424;
-            transform: translateY(-8px); 
+            transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(233, 150, 122, 0.2);
             border-color: #e9967a;
         }
@@ -117,7 +118,7 @@
             transition: transform 0.4s ease;
         }
         .value-card:hover .value-icon {
-            transform: scale(1.1) rotate(5deg); 
+            transform: scale(1.1) rotate(5deg);
         }
 
 
@@ -137,39 +138,39 @@
             background-color: #e9967a;
             top: 0;
             bottom: 0;
-            left: 20px; 
-            margin-left: 0; 
+            left: 20px;
+            margin-left: 0;
             box-shadow: 0 0 10px rgba(233, 150, 122, 0.5);
-            z-index: 1; 
+            z-index: 1;
         }
         .timeline-container {
-            padding: 15px 15px 15px 60px; 
+            padding: 15px 15px 15px 60px;
             position: relative;
             background-color: inherit;
-            width: 100%; 
+            width: 100%;
         }
-        .timeline-container::before { 
+        .timeline-container::before {
             content: '';
             position: absolute;
-            width: 28px; 
+            width: 28px;
             height: 28px;
-            left: 10px; 
+            left: 10px;
             top: 15px;
-            background-color: #121212; 
+            background-color: #121212;
             border-radius: 50%;
-            border: 2px solid #121212; 
+            border: 2px solid #121212;
             z-index: 5;
         }
         .timeline-container::after {
             content: '';
             position: absolute;
-            width: 16px; 
-            height: 16px; 
-            left: 17px; 
-            background-color: #e9967a; 
+            width: 16px;
+            height: 16px;
+            left: 17px;
+            background-color: #e9967a;
             top: 21px;
             border-radius: 50%;
-            z-index: 10; 
+            z-index: 10;
             box-shadow: 0 0 8px #e9967a;
         }
         @media (min-width: 768px) {
@@ -178,7 +179,7 @@
             .right { left: 50%; padding-left: 40px; padding-right: 10px; }
             .left::before { left: unset; right: -14px; border-color: #121212; }
             .right::before { left: -14px; right: unset; border-color: #121212; }
-            .left::after { left: unset; right: -7px; } 
+            .left::after { left: unset; right: -7px; }
             .right::after { left: -7px; right: unset; }
         }
         .timeline-content {
@@ -195,25 +196,25 @@
         /* ---------------------------------------------------- */
         .cta-section {
             background-color: #1e1e1e;
-            padding: 40px 20px; 
+            padding: 40px 20px;
             border-radius: 12px;
             text-align: center;
             border: 2px solid #e9967a50;
-            max-width: 500px; 
+            max-width: 500px;
             margin: 0 auto;
         }
         
         /* Butoni i CTA-së: Plotësisht i gjerë në Mobile */
-        .btn-reserve-final { 
-            background-color: #e9967a; 
+        .btn-reserve-final {
+            background-color: #e9967a;
             color: #121212;
-            font-size: 1.25rem; 
-            font-weight: 800; 
-            padding: 15px 40px; 
+            font-size: 1.25rem;
+            font-weight: 800;
+            padding: 15px 40px;
             width: 100%; /* Bëhet 100% gjerësi në Mobile */
             display: block; /* E bën block element */
-            white-space: nowrap; 
-            border-radius: 9999px; 
+            white-space: nowrap;
+            border-radius: 9999px;
             transition: all 0.4s ease;
             box-shadow: 0 0 0 0 rgba(233, 150, 122, 0.5);
             /* Rregullimi për Desktop - kthehet në gjerësi automatike */
@@ -222,10 +223,10 @@
                 display: inline-block;
             }
         }
-        .btn-reserve-final:hover { 
-            background-color: #d17a60; 
+        .btn-reserve-final:hover {
+            background-color: #d17a60;
             transform: scale(1.02); /* Zvogeluar skalën për mobile/touch */
-            box-shadow: 0 0 25px 5px rgba(233, 150, 122, 0.8); 
+            box-shadow: 0 0 25px 5px rgba(233, 150, 122, 0.8);
         }
         
         /* Stili i Modalities (Pop-up) */
@@ -253,8 +254,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="index.html" class="text-3xl font-extrabold text-accent tracking-widest uppercase hover:text-white transition duration-300">
-                    <span class="hidden sm:inline">LENDI BARBERSHOP</span>
-                    <span class="sm:hidden">LENTI</span>
+                    <span class="hidden sm:inline">FRIZER LENDI</span>
+                    <span class="sm:hidden">LENDI</span>
                 </a>
                 
                 <nav class="hidden md:flex space-x-6 lg:space-x-8 font-light tracking-wider">
@@ -265,7 +266,7 @@
                         <i class="fa-solid fa-scissors"></i><span>Shërbimet</span>
                     </a>
                     <a href="rreth_nesh.html" class="nav-link text-accent transition duration-300 flex items-center space-x-1 active-link">
-                         <i class="fa-solid fa-user-tie"></i><span>Rreth Nesh</span>
+                        <i class="fa-solid fa-user-tie"></i><span>Rreth Nesh</span>
                     </a>
                     <a href="galeria.html" class="nav-link text-gray-400 hover:text-accent transition duration-300 flex items-center space-x-1">
                         <i class="fa-solid fa-camera"></i><span>Galeria</span>
@@ -315,7 +316,7 @@
                 
                 <div class="team-card-unified" data-aos="flip-up" data-aos-delay="300">
                     
-                    <img src="d0bf24cf-21d1-47f2-9641-132fabce3a24.jpeg" alt="Blendon Hoti - Menaxher & Mjeshtër" class="team-img-lg">
+                    <img src="images/d0bf24cf-21d1-47f2-9641-132fabce3a24.jpeg" alt="Blendon Hoti - Menaxher & Mjeshtër" class="team-img-lg">
                     
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Blendon Hoti</h2>
                     <p class="text-accent text-xl mb-4">Menaxher & Krye-Mjeshtër Berber</p>
@@ -326,10 +327,10 @@
                     
                     <div class="sub-staff-summary">
                         <p class="text-white text-lg font-semibold mb-2">
-                             Ekipi i Plotë: 6 Mjeshtër Berberë
+                            Ekipi i Plotë: 6 Berberë
                         </p>
                         <p class="text-gray-400 text-sm">
-                            Përveç meje, stafi ynë është i përbërë nga edhe <strong class="text-accent">5 djem të tjerë</strong>, të cilët janë mjeshtër të dedikuar. Të gjithë ne punojmë për të ofruar shërbimin më të mirë në Ratkoc.
+                            Përveç meje, stafi ynë është i përbërë nga edhe <strong class="text-accent">5 djem të tjerë</strong>, të cilët janë frizer të dedikuar. Të gjithë ne punojmë për të ofruar shërbimin më të mirë në Ratkoc.
                         </p>
                         <i class="fa-solid fa-users text-accent mt-3 text-3xl"></i>
                     </div>
@@ -382,7 +383,7 @@
                     
                     <div class="timeline-container left" data-aos="fade-right" data-aos-delay="200">
                         <div class="timeline-content">
-                            <span class="text-accent font-bold block mb-1 text-base sm:text-lg">31 Nëntor 2020</span> 
+                            <span class="text-accent font-bold block mb-1 text-base sm:text-lg">31 Nëntor 2020</span>
                             <i class="fa-solid fa-wrench text-accent text-3xl mb-2"></i>
                             <h3 class="text-xl font-bold text-white">Fillimi i Zanatit</h3>
                             <p class="text-gray-400 mt-2 text-sm">Faza fillestare e mësimit të profesionit, duke ndërtuar themelin e fortë të mjeshtërisë.</p>
@@ -407,7 +408,7 @@
                 <p class="text-base sm:text-lg text-gray-400 mb-8">
                     Rezervoni një takim me stafin tonë prej 6 profesionistësh sot.
                 </p>
-                <div class="cta-button-container w-full"> 
+                <div class="cta-button-container w-full">
                     <button id="open-modal-btn" class="btn-reserve-final uppercase shadow-xl">
                         REZERVOHU TANI
                     </button>
@@ -425,10 +426,10 @@
                 Ju lutem, qe te shkoni në lokalin tonë, te zgjedhni njerin prej frizerëve tanë.
             </p>
             <div class="flex flex-col space-y-3">
-                 <a href="kontakt.html" class="bg-accent text-black font-bold py-3 px-6 rounded-full hover:bg-[#d17a60] transition duration-300">
+                <a href="kontakt.html" class="bg-accent text-black font-bold py-3 px-6 rounded-full hover:bg-[#d17a60] transition duration-300">
                     Vazhdo te Kontakti
                 </a>
-                 <button id="close-modal-btn" class="text-gray-400 hover:text-white transition duration-300 py-2">
+                <button id="close-modal-btn" class="text-gray-400 hover:text-white transition duration-300 py-2">
                     Anulo
                 </button>
             </div>
@@ -459,9 +460,9 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1000, 
-            once: true, 
-            mirror: false 
+            duration: 1000,
+            once: true,
+            mirror: false
         });
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -492,7 +493,7 @@
                 setTimeout(() => {
                     preloader.style.display = 'none';
                     body.style.opacity = '1';
-                }, 500); 
+                }, 500);
             });
 
             /* LOGJIKA E MODALIT TË REZERVIMIT */
@@ -519,10 +520,10 @@
             // Mbyll Modalin kur shtypet jashtë
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
-                     modal.classList.remove('open');
-                     setTimeout(() => {
-                         modal.classList.add('hidden');
-                     }, 300);
+                    modal.classList.remove('open');
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                    }, 300);
                 }
             });
         });
